@@ -1,6 +1,6 @@
 Hi,
 
-Your platform connects NFC scans to inspections, compliance tracking, and audit logs — a chain where silent failures are a real compliance problem. Built a working version before reaching out: {VERCEL_URL}
+Your platform connects NFC scans to inspections, compliance tracking, and audit logs — a chain where silent failures are a real compliance problem. Built a working version before reaching out: https://safetyscan-platform.vercel.app
 
 Covers inspection workflow tracking, audit log integrity, notification delivery monitoring, and RBAC — the areas you flagged as trial scope.
 

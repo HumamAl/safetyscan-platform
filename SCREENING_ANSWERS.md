@@ -10,7 +10,7 @@ If screening questions appear after submitting a proposal (some clients add them
 
 Built a 6-module maintenance SaaS covering asset registry, work orders, and inspection scheduling — the kind of multi-component system where failure modes matter as much as happy paths.
 
-Built a working version for your project specifically: {VERCEL_URL}
+Built a working version for your project specifically: https://safetyscan-platform.vercel.app
 
 ---
 
@@ -18,7 +18,7 @@ Built a working version for your project specifically: {VERCEL_URL}
 
 Yes — OIDC token validation, RBAC enforcement at the API boundary (not just the frontend), and role-scoped data access are patterns I've implemented in SaaS platforms where auth correctness is a compliance requirement, not just a feature.
 
-Built a working version for your project specifically: {VERCEL_URL}
+Built a working version for your project specifically: https://safetyscan-platform.vercel.app
 
 ---
 
