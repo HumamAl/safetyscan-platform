@@ -1,83 +1,133 @@
-import type { Profile, PortfolioProject } from "@/lib/types";
+// Proposal page data — SafetyScan Platform
+// All portfolio outcomes are exact text from references/developer-profile.md.
+// Never inflate claims.
 
-export const profile: Profile = {
-  name: "Humam",
-  tagline: "Full-stack developer specializing in Next.js applications",
-  bio: "I build MVPs and production apps that solve real operational problems — CRM systems, fleet management platforms, AI-powered dashboards, and e-commerce tools. My approach is straightforward: understand the business need, build something that works, and ship it fast.",
+export const proposalData = {
+  hero: {
+    name: "Humam",
+    valueProp:
+      "I build compliance SaaS platforms with audit-grade inspection workflows, OIDC-enforced access control, and reliable notification delivery — and I've already built one for your review in Tab 1.",
+    badge: "Built this demo for your project",
+    stats: [
+      { value: "24+", label: "Projects Shipped" },
+      { value: "< 48hr", label: "Demo Turnaround" },
+      { value: "15+", label: "Industries" },
+    ],
+  },
+
+  portfolioProjects: [
+    {
+      name: "Fleet Maintenance SaaS",
+      description:
+        "Asset tracking, work orders, preventive maintenance scheduling, inspections, parts inventory, and analytics across a full 6-module SaaS platform. Multi-entity data with relational IDs, scheduled workflows, and inspection status tracking — structurally similar to what you're building.",
+      outcome:
+        "6-module SaaS covering the full maintenance lifecycle — from asset registry to work orders to parts inventory",
+      tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui", "Recharts"],
+      url: null,
+      relevance:
+        "Direct structural match — asset registry, inspection scheduling, and status tracking are the core loops in both platforms.",
+    },
+    {
+      name: "PayGuard — Transaction Monitor",
+      description:
+        "Compliance monitoring dashboard with transaction flagging, multi-account linking, alert delivery tracking, and prohibited merchant detection. Built around the idea that silent failures in a monitoring chain are a compliance liability.",
+      outcome:
+        "Compliance monitoring dashboard with transaction flagging, multi-account linking, and alert delivery tracking",
+      tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui", "Recharts"],
+      url: "https://payment-monitor.vercel.app",
+      relevance:
+        "Same failure-mode thinking your platform requires — if an alert doesn't deliver, the system must surface it, not silently drop it.",
+    },
+    {
+      name: "Auction Violations Monitor",
+      description:
+        "Compliance monitoring tool tracking violations, seller behavior patterns, and enforcement actions. Violation detection pipeline with structured status tracking and escalation workflows.",
+      outcome:
+        "Compliance dashboard with violation detection, seller flagging, and enforcement action tracking",
+      tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
+      url: "https://auction-violations.vercel.app",
+      relevance:
+        "Enforcement workflow pattern — finding → assign → escalate → close — mirrors your Finding and CAR lifecycle.",
+    },
+    {
+      name: "eBay Pokemon Monitor",
+      description:
+        "Real-time listing monitor using the eBay Browse API with webhook-based Discord alerts and price trend tracking. Event-driven notification pipeline with delivery confirmation — the same reliability guarantee your Twilio/Resend notification layer needs.",
+      outcome:
+        "Real-time listing monitor with webhook-based Discord alerts and price trend tracking",
+      tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
+      url: "https://ebay-pokemon-monitor.vercel.app",
+      relevance:
+        "Notification reliability pattern — dispatch, confirm delivery, surface failures — directly applicable to your Twilio + Resend stack.",
+    },
+  ],
+
   approach: [
     {
-      title: "Understand the Problem",
-      description: "Read the full requirements, identify the core pain point",
-    },
-    {
-      title: "Build a Working Demo",
+      step: "01",
+      title: "Audit the System",
       description:
-        "Show, don't tell — a live demo is worth 1000 words of proposal text",
+        "Map the existing architecture — auth enforcement boundaries, inspection workflow edges, audit log write paths. Ask the one question that surfaces the highest-risk failure mode before writing a line of code.",
+      timeline: "Day 1–2",
     },
     {
-      title: "Use Realistic Data",
+      step: "02",
+      title: "Harden the Weakest Link",
       description:
-        "Mock data that looks like real client data, not placeholder text",
+        "Working code targeting the critical path first: OIDC token validation at API boundaries, idempotent inspection writes, and atomic audit log entries. Visible progress every 2–3 days. No dark periods.",
+      timeline: "Week 1–2",
     },
     {
-      title: "Ship Fast",
-      description: "MVP first, polish later. Get something deployed quickly",
+      step: "03",
+      title: "Ship with Documentation",
+      description:
+        "Production-ready on Vercel with TypeScript strict mode, structured error handling, and a handoff doc covering what changed, why, and what the next engineer needs to know. Clean code you can hand off without apology.",
+      timeline: "End of trial",
+    },
+    {
+      step: "04",
+      title: "Iterate Safely",
+      description:
+        "Short feedback cycles with explicit change scoping. New requirements get evaluated against the existing auth and audit model — no shortcuts that create new failure modes downstream.",
+      timeline: "Ongoing",
     },
   ],
-  skillCategories: [
-    {
-      name: "Frontend",
-      skills: [
-        "TypeScript",
-        "React",
-        "Next.js",
-        "Tailwind CSS",
-        "shadcn/ui",
-        "Recharts",
-      ],
-    },
-    {
-      name: "Backend & APIs",
-      skills: [
-        "Node.js",
-        "REST APIs",
-        "Microsoft Graph",
-        "Stripe",
-        "Shopify API",
-      ],
-    },
-    {
-      name: "AI & Automation",
-      skills: [
-        "Claude API",
-        "OpenAI API",
-        "n8n",
-        "Prompt Engineering",
-      ],
-    },
-  ],
-};
 
-export const portfolioProjects: PortfolioProject[] = [
-  {
-    id: "wmf-agent",
-    title: "WMF Agent Dashboard",
-    description:
-      "AI-powered customer service agent for manufacturing — email classification, RFQ extraction, human-in-the-loop approval",
-    tech: ["Next.js", "Claude API", "n8n", "Microsoft Graph"],
+  skills: [
+    {
+      category: "Frontend",
+      items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+    },
+    {
+      category: "Backend & APIs",
+      items: [
+        "Node.js",
+        "REST API Design",
+        "PostgreSQL",
+        "Webhook Handling",
+        "Queue Systems",
+      ],
+    },
+    {
+      category: "Auth & Security",
+      items: [
+        "Keycloak",
+        "OIDC / OAuth2",
+        "RBAC",
+        "JWT Validation",
+        "API Boundary Guards",
+      ],
+    },
+    {
+      category: "Infrastructure & Notifications",
+      items: ["Vercel", "Cloudflare", "Twilio", "Resend", "AWS"],
+    },
+  ],
+
+  cta: {
+    headline: "Ready to make your inspection chain fail-safe — end to end.",
+    body: "The demo in Tab 1 shows the full NFC scan → inspection → audit log flow already working. The trial deliverable is one component hardened with error handling, logging, and a handoff doc — shipped in production-quality TypeScript.",
+    action: "Reply on Upwork to start",
+    availability: "Currently available for new projects",
   },
-  {
-    id: "lead-crm",
-    title: "Lead Intake CRM",
-    description:
-      "Lead intake form, CRM dashboard, lead scoring, pipeline management, and automation rules",
-    tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
-  },
-  {
-    id: "fleet-saas",
-    title: "Fleet Maintenance SaaS",
-    description:
-      "Asset tracking, work orders, preventive maintenance, inspections, parts inventory, analytics",
-    tech: ["Next.js", "Recharts", "TypeScript", "shadcn/ui"],
-  },
-];
+};

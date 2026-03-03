@@ -12,12 +12,8 @@ export function SidebarLayout({ children }: { children: React.ReactNode }) {
 
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
         <AppHeader />
-        {/* Content padding driven by --content-padding token
-            Compact: 1rem | Standard: 1.5rem | Spacious: 2rem */}
-        <main
-          className="flex-1 overflow-y-auto"
-          style={{ padding: "var(--content-padding)" }}
-        >
+        {/* Pages manage their own padding via p-4 / page-container class */}
+        <main className="flex-1 overflow-y-auto">
           {children}
         </main>
       </div>

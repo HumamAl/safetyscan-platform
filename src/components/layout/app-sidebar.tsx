@@ -13,6 +13,10 @@ import {
   User,
   ArrowRight,
   Github,
+  Layers,
+  CalendarCheck,
+  AlertTriangle,
+  FileText,
 } from "lucide-react";
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -23,32 +27,30 @@ import {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  // Dashboard Builder agent: add 3-5 feature page nav items here.
-  // Example: { href: "/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/", label: "Inspection Dashboard", icon: LayoutDashboard, badge: null },
+  { href: "/asset-register", label: "Asset Register", icon: Layers, badge: null },
+  { href: "/inspection-schedule", label: "Inspection Schedule", icon: CalendarCheck, badge: null },
+  { href: "/findings", label: "Findings & CARs", icon: AlertTriangle, badge: 12 },
+  { href: "/audit-log", label: "Audit Log", icon: FileText, badge: null },
 ];
 
 function SidebarLogo({ collapsed }: { collapsed: boolean }) {
   return (
-    <div className="p-4 border-b border-border/60 flex items-center gap-3">
-      {/* Agent: replace the letter icon with a relevant Lucide icon if appropriate */}
-      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-        <span className="text-primary font-bold text-sm font-mono">
+    <div className="px-3 py-3 border-b border-border flex items-center gap-2.5">
+      <div className="w-7 h-7 rounded-sm bg-primary flex items-center justify-center shrink-0">
+        <span className="text-primary-foreground font-bold text-xs font-mono">
           {APP_CONFIG.appName.charAt(0)}
         </span>
       </div>
       {!collapsed && (
         <div className="overflow-hidden">
-          <h1 className="font-semibold text-sm leading-tight truncate">
+          <h1 className="font-semibold text-sm leading-tight truncate tracking-tight">
             {APP_CONFIG.appName}
           </h1>
-          {/* "Proposal Demo" subtitle with pulsing indicator — always visible */}
-          <p className="text-[10px] text-muted-foreground/60 font-mono tracking-widest uppercase flex items-center gap-1.5">
+          {/* Proposal Demo subtitle — static bullet for corporate-enterprise formality */}
+          <p className="text-[10px] text-muted-foreground/60 font-mono tracking-widest uppercase flex items-center gap-1">
             Proposal Demo
-            <span className="relative inline-flex h-1.5 w-1.5 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary/40 opacity-75" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary/60" />
-            </span>
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary/60 animate-pulse shrink-0" />
           </p>
         </div>
       )}
@@ -60,7 +62,7 @@ function SidebarNav({ collapsed }: { collapsed: boolean }) {
   const pathname = usePathname();
 
   return (
-    <nav className="flex-1 p-2 space-y-1 overflow-y-auto">
+    <nav className="flex-1 p-2 space-y-0.5 overflow-y-auto">
       {navItems.map((item) => {
         const isActive =
           pathname === item.href ||
@@ -71,14 +73,21 @@ function SidebarNav({ collapsed }: { collapsed: boolean }) {
             href={item.href}
             style={{ paddingTop: "var(--nav-item-py)", paddingBottom: "var(--nav-item-py)" }}
             className={cn(
-              "flex items-center gap-3 px-3 rounded-md text-sm transition-colors duration-100",
+              "flex items-center gap-3 px-3 rounded-sm text-sm transition-colors duration-75",
               isActive
-                ? "bg-primary/8 text-primary font-medium"
-                : "text-muted-foreground hover:bg-[color:var(--surface-hover)]"
+                ? "bg-primary/10 text-primary font-medium"
+                : "text-muted-foreground hover:bg-[color:var(--surface-hover)] hover:text-foreground"
             )}
           >
             <item.icon className="w-4 h-4 shrink-0" />
-            {!collapsed && <span className="truncate">{item.label}</span>}
+            {!collapsed && (
+              <span className="truncate flex-1">{item.label}</span>
+            )}
+            {!collapsed && item.badge !== null && item.badge > 0 && (
+              <span className="inline-flex items-center justify-center h-4 min-w-4 px-1 rounded-sm text-[10px] font-semibold bg-destructive text-white leading-none">
+                {item.badge}
+              </span>
+            )}
           </Link>
         );
       })}
